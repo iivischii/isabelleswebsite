@@ -1287,3 +1287,31 @@ button { font: inherit; }
   .cert-row { padding: 8px; }
   .cert-row span, .cert-row time { font-size: 0.64rem; }
 }
+
+/* =========================================================
+   FRAMES AROUND THE 4 ABOUT CARDS
+   card 1 (Degree)    -> assets/1.png
+   card 2 (School)    -> assets/3.png
+   card 3 (Years)     -> assets/4.png
+   card 4 (Languages) -> assets/5.png
+   If the text touches the frame, make the padding bigger.
+   If there is too much space, make it smaller.
+========================================================= */
+.modal-section .facts .fact {
+  min-height: 9.5rem;
+  padding: 2.6rem 2.4rem;
+  border: 0;
+  justify-content: center;
+  text-align: center;
+  background: transparent center / 100% 100% no-repeat;
+}
+.modal-section .facts .fact:nth-child(1) { background-image: url('./assets/1.png'); }
+.modal-section .facts .fact:nth-child(2) { background-image: url('./assets/3.png'); }
+.modal-section .facts .fact:nth-child(3) { background-image: url('./assets/4.png'); }
+.modal-section .facts .fact:nth-child(4) { background-image: url('./assets/5.png'); }
+.modal-section .facts .fact:hover { box-shadow: none; }
+
+@media (max-width: 639px) {
+  .modal-section .facts .fact { min-height: 7.5rem; padding: 1.9rem 1.5rem; }
+  .modal-section .facts .fact .fact-value { font-size: 0.85rem; line-height: 1.35; }
+}

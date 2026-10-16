@@ -141,7 +141,7 @@ function Header({ onHome }) {
     <header className="header">
       <div className="container header-inner">
         <button type="button" className="brand" onClick={onHome} aria-label="Back to cover">
-          <span className="brand-name">PORTFOLIO <small>2026</small></span>
+          <span className="brand-name">DIGITAL PORTFOLIO <small>2026</small></span>
         </button>
         <p className="header-label">9 · 14 · 2004</p>
       </div>
@@ -285,7 +285,7 @@ function Interests() {
         </article>
         <article className="interest-row">
           <h3>Sports</h3>
-          <p>An avid football and basketball fan, supporting Real Madrid, Jude Bellingham, and Gilas Pilipinas.</p>
+          <p>An avid football and basketball fan, supporting Real Madrid and Gilas Pilipinas.</p>
         </article>
         <article className="interest-row">
           <h3>Comic Books</h3>

@@ -26,7 +26,7 @@ const facts = [
   { label: 'Degree', value: 'BS Information Technology' },
   { label: 'School', value: 'NU Dasmariñas' },
   { label: 'Years', value: '2023 – 2027' },
-  { label: 'Languages', value: 'English, Filipino' },
+  { label: 'Languages', value: 'English, &, Filipino' },
 ]
 
 const skills = [
@@ -61,6 +61,13 @@ const projects = [
       'The videos featured on the channel were edited using the free version of CapCut, with a focus on creating kid-friendly, accessible, and easy-to-understand content. I aimed to make the videos engaging and approachable for our primary audience of younger learners, using a straightforward editing style that supports their understanding while keeping the experience fun and enjoyable.',
     tags: ['CapCut', 'Youtube Creator Studio'],
     link: 'https://www.youtube.com/@PoweredByCoffee-CMNW',
+  },
+  {
+    title: 'SIKLAB',
+    description:
+      'I independently authored the research paper, with guidance from advisers and professors, and contributed extensively to the development of the game using Unity and C#. My responsibilities included designing every character with the assistance of AI tools, primarily Tripo and Krita, using a drawing tablet to refine the artwork. During the early development stages, I also created a storyboard to establish the game\'s narrative direction. For implementation, I developed the game\’s introduction and several mini-games, including a maze, a Tumbang Preso-inspired game in Chapter 2, and a puzzle and Jackstone-inspired game in Chapter 3.',
+    tags: ['Unity', 'Docx', 'Word'],
+    link: 'Coming soon',
   },
   {
     title: 'Augmented Realties',
@@ -103,6 +110,7 @@ const navLinks = [
   { id: 'skills', label: 'Skills' },
   { id: 'hardware', label: 'Hardware' },
   { id: 'projects', label: 'Projects' },
+  { id: 'certifications', label: 'Certifications' },
   { id: 'contact', label: 'Contact' },
 ]
 
@@ -269,23 +277,90 @@ function Hardware() {
 }
 
 function Projects() {
+  const [activeProject, setActiveProject] = useState(0)
+  const touchStartX = useRef(null)
+  const currentProject = projects[activeProject]
+
+  const showProject = (index) => {
+    setActiveProject((index + projects.length) % projects.length)
+  }
+
+  const handleTouchStart = (event) => {
+    touchStartX.current = event.changedTouches[0].clientX
+  }
+
+  const handleTouchEnd = (event) => {
+    if (touchStartX.current === null) return
+    const distance = event.changedTouches[0].clientX - touchStartX.current
+    if (Math.abs(distance) > 45) showProject(activeProject + (distance < 0 ? 1 : -1))
+    touchStartX.current = null
+  }
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault()
+      showProject(activeProject - 1)
+    } else if (event.key === 'ArrowRight') {
+      event.preventDefault()
+      showProject(activeProject + 1)
+    }
+  }
+
   return (
     <Section id="projects" title="Projects" intro="Things I’ve built along the way.">
-      <div className="project-list">
-        {projects.map((project) => (
-          <article key={project.title} className="project-row">
+      <div
+        className="project-carousel"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
+        aria-label="Projects carousel. Use the left and right arrow keys to change projects."
+      >
+        <div className="project-list">
+          <article className="project-row" key={currentProject.title} aria-live="polite">
             <div>
-              <p className="project-type">{project.tags.join(' · ')}</p>
-              <h3 className="card-title">{project.title}</h3>
-              {project.link && <a href={project.link} className="card-link" target="_blank" rel="noreferrer">View project ↗</a>}
+              <p className="project-type">{currentProject.tags.join(' · ')}</p>
+              <h3 className="card-title">{currentProject.title}</h3>
+              {currentProject.link && currentProject.link !== 'Coming soon' && (
+                <a href={currentProject.link} className="card-link" target="_blank" rel="noreferrer">
+                  View project ↗
+                </a>
+              )}
             </div>
-            <p className="project-description">{project.description}</p>
+            <p className="project-description">{currentProject.description}</p>
           </article>
-        ))}
-      </div>
+        </div>
 
-      
-      <h3 className="subhead">Certifications</h3>
+        <div className="project-carousel-controls" aria-label="Project navigation">
+          <button type="button" className="project-arrow" onClick={() => showProject(activeProject - 1)} aria-label="Previous project">
+            <span aria-hidden="true">←</span>
+          </button>
+          <div className="project-dots" role="group" aria-label="Choose a project">
+            {projects.map((project, index) => (
+              <button
+                key={project.title}
+                type="button"
+                className={`project-dot${index === activeProject ? ' is-active' : ''}`}
+                onClick={() => showProject(index)}
+                aria-label={`Show project ${index + 1}: ${project.title}`}
+                aria-current={index === activeProject ? 'true' : undefined}
+              />
+            ))}
+          </div>
+          <button type="button" className="project-arrow" onClick={() => showProject(activeProject + 1)} aria-label="Next project">
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+        <p className="project-count">{String(activeProject + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}</p>
+      </div>
+    </Section>
+  )
+}
+
+function Certifications() {
+  return (
+    <Section id="certifications" title="Certifications" intro="Credentials, workshops, and professional involvement.">
+      <h3 className="subhead certifications-subhead">Certifications</h3>
       <div className="cert-list">
         {certifications.map((cert) => (
           <div key={cert.title} className="cert-row">
@@ -296,7 +371,7 @@ function Projects() {
         ))}
       </div>
 
-      <h3 className="subhead">Workshops & Organizations</h3>
+      <h3 className="subhead">Workshops &amp; Organizations</h3>
       <div className="cert-list">
         {workshopsNorgs.map((item) => (
           <div key={item.title} className="cert-row">
@@ -307,7 +382,7 @@ function Projects() {
         ))}
       </div>
     </Section>
-  );
+  )
 }
 
 function Interests() {
@@ -393,6 +468,7 @@ export default function App() {
     skills: <Skills />,
     hardware: <Hardware />,
     projects: <Projects />,
+    certifications: <Certifications />,
     contact: <Contact />,
   }
   const panelLabel = navLinks.find((link) => link.id === activePanel)?.label

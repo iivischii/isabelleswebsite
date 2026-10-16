@@ -1368,3 +1368,108 @@ button { font: inherit; }
   .modal-section .facts .fact .fact-label { font-size: 0.48rem; letter-spacing: 0.06em; }
   .modal-section .facts .fact .fact-value { font-size: 0.66rem; line-height: 1.15; }
 }
+
+
+
+/* ---------- projects carousel ---------- */
+.project-carousel {
+  outline: none;
+  touch-action: pan-y;
+}
+.project-carousel:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+  border-radius: 4px;
+}
+.project-carousel .project-list {
+  border-top: 1px solid var(--border);
+}
+.project-carousel .project-row {
+  min-height: 15rem;
+  align-items: start;
+  padding: clamp(1.25rem, 3vw, 2rem) 0;
+  animation: project-fade-in 240ms ease both;
+}
+.project-carousel .project-description {
+  font-size: clamp(0.86rem, 1.15vw, 1rem);
+  line-height: 1.7;
+}
+.project-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+.project-arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 auto;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--accent-text);
+  font: inherit;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+.project-arrow:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
+  transform: translateY(-1px);
+}
+.project-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+.project-dot {
+  width: 0.48rem;
+  height: 0.48rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent-2);
+  opacity: 0.55;
+  cursor: pointer;
+  transition: width 180ms ease, opacity 180ms ease, background 180ms ease;
+}
+.project-dot:hover { opacity: 0.85; }
+.project-dot.is-active {
+  width: 1.4rem;
+  background: var(--accent-text);
+  opacity: 1;
+}
+.project-count {
+  margin-top: 0.45rem;
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+.certifications-subhead { margin-top: 0; }
+
+@keyframes project-fade-in {
+  from { opacity: 0.55; translate: 0 4px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@media (max-width: 639px) {
+  .project-carousel .project-row {
+    min-height: 0;
+    gap: 0.75rem;
+    padding: 1rem 0;
+  }
+  .project-carousel .project-description { font-size: 0.82rem; }
+  .project-carousel-controls { padding-top: 0.75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-carousel .project-row { animation: none; }
+  .project-arrow, .project-dot { transition: none; }
+}

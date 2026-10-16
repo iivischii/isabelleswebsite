@@ -1473,3 +1473,87 @@ button { font: inherit; }
   .project-carousel .project-row { animation: none; }
   .project-arrow, .project-dot { transition: none; }
 }
+
+/* Mobile-only cover layout: keep the desktop/site view unchanged. */
+@media (max-width: 639px) {
+  .portfolio-shell {
+    min-height: 100svh;
+    background: #fbf7ee;
+  }
+
+  .hero {
+    background: #fbf7ee;
+  }
+
+  .hero-grid {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    padding: 0;
+  }
+
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: none;
+    min-height: calc(100svh - 64px);
+    padding: 48px 28px 54px;
+    background: #f0dfe1;
+  }
+
+  .hero-title {
+    margin-top: 0;
+    font-size: clamp(3.1rem, 10.5vw, 3.7rem);
+    line-height: 0.88;
+  }
+
+  .hero-title em {
+    margin-top: 12px;
+  }
+
+  .hero-role {
+    margin-top: 24px;
+    font-size: 1.25rem;
+    line-height: 1.35;
+  }
+
+  .hero-text {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .hero-index {
+    width: 100%;
+    max-width: none;
+    padding: 24px 28px 32px;
+    background: #fbf7ee;
+    animation: none;
+  }
+
+  .index-heading {
+    gap: 12px;
+    padding-bottom: 14px;
+  }
+
+  .hero-stamp { width: 44px; height: 44px; }
+  .index-kicker { font-size: 1.1rem; }
+  .index-note { font-size: 0.78rem; }
+  .index-link {
+    min-height: 48px;
+    grid-template-columns: 34px 1fr auto;
+    font-size: 1.15rem;
+  }
+
+  .hero-footer {
+    padding: 14px 24px 20px;
+    background: #fbf7ee;
+    font-size: 0.52rem;
+    line-height: 1.6;
+  }
+}

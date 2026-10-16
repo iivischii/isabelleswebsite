@@ -41,6 +41,13 @@ const skills = [
 ]
 
 const projects = [
+    {
+    title: 'Personal Website',
+    description:
+      'A responsive personal portfolio showcasing my background, skills, certifications, and projects through a custom editorial design, interactive navigation, and subtle animations.',
+    tags: ['React.js', 'CSS Grid'],
+    link: '', 
+  },
   {
     title: 'SIKLAB Website',
     description:
@@ -82,13 +89,6 @@ const projects = [
       'Belligoal is a personal football tracking website built around my interest in Real Madrid and Jude Bellingham. Developed using JSX and CSS, the site brings together the player and team information I personally want to follow in one place. I integrated the ESPN API to access football updates and news, and deployed the project on Render. To help keep the site available and its information refreshed, I configured UptimeRobot for uptime monitoring and periodic requests, alongside the project\'s Gradle-based setup. As one of my most challenging solo projects, Belligoal gave me the opportunity to take full ownership of an idea, work with external APIs, and navigate deployment and maintenance independently. What started as a personal passion project became an opportunity to push my skills beyond what I was already comfortable with.',
     tags: ['React.js', 'API integration', 'Personal project'],
     link: 'https://belligoal.onrender.com',
-  },
-  {
-    title: 'Personal Website',
-    description:
-      'A fully responsive, interactive personal site with a consistent grid layout, custom animations and audio.',
-    tags: ['React', 'CSS Grid'],
-    link: '', // 👈
   },
 ]
 

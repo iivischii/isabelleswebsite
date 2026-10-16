@@ -1294,15 +1294,32 @@ button { font: inherit; }
    card 2 (School)    -> assets/3.png
    card 3 (Years)     -> assets/4.png
    card 4 (Languages) -> assets/5.png
-   If the text touches the frame, make the padding bigger.
-   If there is too much space, make it smaller.
+
+   The text is kept small and inside the hole of each frame.
+   Padding is "top  sides  bottom" (in % of the card width).
+   Bigger bottom number = text sits higher.
+   Font: src/assets/Zaslia.otf  (rename below if your file
+   has a different name)
 ========================================================= */
+@font-face {
+  font-family: 'Zaslia';
+  src: url('./assets/Zaslia.otf') format('opentype');
+  font-display: swap;
+}
+
 .modal-section .facts .fact {
-  min-height: 9.5rem;
-  padding: 2.6rem 2.4rem;
-  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  gap: 0.2rem;
+  aspect-ratio: 1 / 1;
+  min-height: 0;
+  padding: 24% 27% 30%;
+  border: 0;
   text-align: center;
+  font-family: 'Zaslia', var(--font-display);
+  font-synthesis: none;
   background: transparent center / 100% 100% no-repeat;
 }
 .modal-section .facts .fact:nth-child(1) { background-image: url('./assets/1.png'); }
@@ -1311,7 +1328,22 @@ button { font: inherit; }
 .modal-section .facts .fact:nth-child(4) { background-image: url('./assets/5.png'); }
 .modal-section .facts .fact:hover { box-shadow: none; }
 
+.modal-section .facts .fact .fact-label {
+  font-family: 'Zaslia', var(--font-display);
+  font-size: 0.56rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+}
+.modal-section .facts .fact .fact-value {
+  font-family: 'Zaslia', var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
 @media (max-width: 639px) {
-  .modal-section .facts .fact { min-height: 7.5rem; padding: 1.9rem 1.5rem; }
-  .modal-section .facts .fact .fact-value { font-size: 0.85rem; line-height: 1.35; }
+  .modal-section .facts .fact { padding: 23% 25% 29%; gap: 0.1rem; }
+  .modal-section .facts .fact .fact-label { font-size: 0.48rem; letter-spacing: 0.06em; }
+  .modal-section .facts .fact .fact-value { font-size: 0.66rem; line-height: 1.15; }
 }

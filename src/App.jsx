@@ -191,7 +191,7 @@ function Hero({ onSelect }) {
       <div className="container hero-grid">
         <div className="hero-copy">
           <h1 className="hero-title"><span>Cyrene Isabelle</span><em>Wenceslao</em></h1>
-          <p className="hero-role">UI/UX Designer · Web Developer · Project Managment</p>
+          <p className="hero-role">UI/UX Designer · Web Developer · Project Management</p>
           <p className="hero-text">
             UI/UX design is my specialty. I create thoughtful mobile and web experiences, and contribute across design, development, and project collaboration.
           </p>

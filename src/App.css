@@ -1038,7 +1038,7 @@ button { font: inherit; }
   flex: 0 0 auto;
   align-items: center;
   justify-content: space-between;
-  min-height: 6.5rem;
+  min-height: 4.5rem;
   padding: 0 1.375rem;
   border-bottom: 0;
   background: transparent;
@@ -1059,8 +1059,8 @@ button { font: inherit; }
   transition: color 160ms, background 160ms;
 }
 .dialog-close:hover { color: white; background: var(--accent); }
-.dialog-content { position: relative; z-index: 1; max-height: calc(94svh - 9.75rem); overflow: auto; overscroll-behavior: contain; }
-.modal-section { padding: 1.75rem 0 2.125rem; background: transparent !important; }
+.dialog-content { position: relative; z-index: 1; max-height: calc(94svh - 6.5rem); overflow: auto; overscroll-behavior: contain; }
+.modal-section { padding: 0.75rem 0 1.5rem; background: transparent !important; }
 .modal-section .container { max-width: 60rem; }
 .modal-section .section-title { margin-bottom: 1.375rem; font-size: 2.5rem; }
 .modal-section .section-title::after { margin-top: 0.5625rem; }
@@ -1111,8 +1111,8 @@ button { font: inherit; }
 .dialog-close:hover { transform: rotate(12deg) scale(1.06); }
 .dialog-content {
   z-index: 2;
-  margin: 0 7% 5%;
-  max-height: calc(94svh - 9.75rem);
+  margin: 0 7% 1rem;
+  max-height: calc(94svh - 6.5rem);
   scrollbar-color: #d39aa6 transparent;
   scrollbar-width: thin;
 }
@@ -1290,16 +1290,17 @@ button { font: inherit; }
 
 /* =========================================================
    FRAMES AROUND THE 4 ABOUT CARDS
-   card 1 (Degree)    -> assets/1.png
+   card 1 (Degree)    -> assets/4.png
    card 2 (School)    -> assets/3.png
-   card 3 (Years)     -> assets/4.png
+   card 3 (Years)     -> assets/1.png   (pushed left 0.65rem)
    card 4 (Languages) -> assets/5.png
 
-   The text is kept small and inside the hole of each frame.
-   Padding is "top  sides  bottom" (in % of the card width).
-   Bigger bottom number = text sits higher.
-   Font: src/assets/Zaslia.otf  (rename below if your file
-   has a different name)
+   CHANGE A FRAME: edit the file name in the ::before lines.
+   MOVE A FRAME LEFT/RIGHT: change the translateX number on
+   that card (negative = left, positive = right). The words
+   stay where they are, only the frame moves.
+   RAISE EVERYTHING: make the -9rem under "RAISE" bigger.
+   Font: src/assets/Zaslia.otf
 ========================================================= */
 @font-face {
   font-family: 'Zaslia';
@@ -1307,7 +1308,11 @@ button { font: inherit; }
   font-display: swap;
 }
 
+.modal-section .facts { row-gap: 0.5rem; }
+
 .modal-section .facts .fact {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1320,12 +1325,22 @@ button { font: inherit; }
   text-align: center;
   font-family: 'Zaslia', var(--font-display);
   font-synthesis: none;
-  background: transparent center / 100% 100% no-repeat;
+  background: transparent;
 }
-.modal-section .facts .fact:nth-child(1) { background-image: url('./assets/4.png'); }
-.modal-section .facts .fact:nth-child(2) { background-image: url('./assets/3.png'); }
-.modal-section .facts .fact:nth-child(3) { background-image: url('./assets/1.png'); }
-.modal-section .facts .fact:nth-child(4) { background-image: url('./assets/5.png'); }
+.modal-section .facts .fact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.modal-section .facts .fact:nth-child(1)::before { background-image: url('./assets/4.png'); }
+.modal-section .facts .fact:nth-child(2)::before { background-image: url('./assets/3.png'); }
+.modal-section .facts .fact:nth-child(3)::before { background-image: url('./assets/1.png'); transform: translateX(-0.65rem); }
+.modal-section .facts .fact:nth-child(4)::before { background-image: url('./assets/5.png'); }
 .modal-section .facts .fact:hover { box-shadow: none; }
 
 .modal-section .facts .fact .fact-label {
@@ -1340,6 +1355,12 @@ button { font: inherit; }
   font-size: 0.82rem;
   font-weight: 400;
   line-height: 1.2;
+}
+
+/* RAISE: on wide screens the cards slide up next to the title,
+   so the About page fits without scrolling */
+@media (min-width: 860px) {
+  .modal-section .facts { margin-top: -9rem; }
 }
 
 @media (max-width: 639px) {

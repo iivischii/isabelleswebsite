@@ -35,18 +35,18 @@ const skills = [
   { group: 'Mobile & Games', items: ['React Native', 'Flutter', 'Unity', 'Blender'] },
   { group: 'Backend & Data', items: ['Supabase', 'Firebase', 'SQL', 'Database management'] },
   { group: 'Strengths', items: ['Quality Assurance', 'Project Management', 'Technical Documentation', 'Academic Writing', 'Team Communication'] },
-  { group: 'Tools & Hosting', items: ['Visual Studio', 'GitHub', 'Vercel', 'Render'] },
+  { group: 'Tools & Hosting', items: ['Visual Studio', 'GitHub','Claude', 'Copilot','ChatGPT', 'Vercel', 'Render'] },
   { group: 'UI/UX & Design', items: ['UI/UX Design', 'Figma', 'Canva'] },
-  { group: 'AI & Video', items: ['Claude', 'CapCut', 'Video editing'] },
+  { group: 'Video', items: ['CapCut', 'Video editing'] },
 ]
 
 const projects = [
   {
     title: 'SIKLAB',
     description:
-      'A Philippine history adventure game for Grade 6 learners. I coordinated the project, contributed selected gameplay features, and built the project website and admin dashboard.',
+      'A Philippine history adventure game for young learners. I coordinated the project, contributed selected gameplay features, and built the project website and admin dashboard.',
     tags: ['Unity', 'C#', 'React.js', 'Supabase'],
-    link: 'https://siklab-admin.vercel.app/',
+    link: 'https://larongsiklab.com/',
   },
   {
     title: 'Augmented Realties',
@@ -177,7 +177,7 @@ function Hero({ onSelect }) {
           </nav>
         </div>
       </div>
-      <div className="hero-footer"><span>NU DASMARIÑAS · BS INFORMATION TECHNOLOGY</span><span>© {currentYear} {profile.name}</span></div>
+      <div className="hero-footer"><span>NU DASMARIÑAS · BS INFORMATION TECHNOLOGY</span><span>© {currentYear} Isabelle Wenceslao</span></div>
     </section>
   )
 }

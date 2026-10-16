@@ -41,10 +41,10 @@ const skills = [
 ]
 
 const projects = [
-    {
+  {
     title: 'Personal Website',
     description:
-      'A responsive personal portfolio showcasing my background, skills, certifications, and projects through a custom editorial design, interactive navigation, and subtle animations.',
+      'A fully responsive, interactive digital portfolio to get to know me professionally and personally,with a consistent grid layout.',
     tags: ['React.js', 'CSS Grid'],
     link: '', 
   },
@@ -74,7 +74,7 @@ const projects = [
     description:
       'I independently authored the research paper, with guidance from advisers and professors, and contributed extensively to the development of the game using Unity and C#. My responsibilities included designing every character with the assistance of AI tools, primarily Tripo and Krita, using a drawing tablet to refine the artwork. During the early development stages, I also created a storyboard to establish the game\'s narrative direction. For implementation, I developed the game\’s introduction and several mini-games, including a maze, a Tumbang Preso-inspired game in Chapter 2, and a puzzle and Jackstone-inspired game in Chapter 3.',
     tags: ['Unity', 'Docx', 'Word'],
-    link: 'Coming soon',
+    link: '',
   },
   {
     title: 'Augmented Realties',
@@ -90,6 +90,7 @@ const projects = [
     tags: ['React.js', 'API integration', 'Personal project'],
     link: 'https://belligoal.onrender.com',
   },
+  
 ]
 
 const certifications = [

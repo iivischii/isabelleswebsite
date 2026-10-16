@@ -1557,3 +1557,65 @@ button { font: inherit; }
     line-height: 1.6;
   }
 }
+
+
+/* FIX: allow the mobile cover and index to scroll as a normal page.
+   Desktop rules above remain unchanged. */
+@media (max-width: 639px) {
+  html,
+  body,
+  #root {
+    height: auto;
+    min-height: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .portfolio-shell {
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+    background: #fbf7ee;
+  }
+
+  .portfolio-shell::before {
+    position: absolute;
+    inset: 7px;
+    pointer-events: none;
+  }
+
+  .portfolio-shell > main {
+    display: block;
+    flex: initial;
+    min-height: 0;
+  }
+
+  .hero {
+    display: block;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .hero-grid {
+    min-height: 0;
+  }
+
+  .hero-copy {
+    min-height: calc(100svh - 64px);
+  }
+
+  .hero-footer {
+    position: relative;
+  }
+
+  .copyright {
+    position: static;
+    display: block;
+    padding: 0 24px 12px;
+    text-align: right;
+    background: #fbf7ee;
+  }
+}

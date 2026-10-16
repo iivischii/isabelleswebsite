@@ -1299,7 +1299,7 @@ button { font: inherit; }
    MOVE A FRAME LEFT/RIGHT: change the translateX number on
    that card (negative = left, positive = right). The words
    stay where they are, only the frame moves.
-   RAISE EVERYTHING: make the -9rem under "RAISE" bigger.
+   RAISE EVERYTHING: make the -7rem under "RAISE" bigger.
    Font: src/assets/Zaslia.otf
 ========================================================= */
 @font-face {
@@ -1360,7 +1360,7 @@ button { font: inherit; }
 /* RAISE: on wide screens the cards slide up next to the title,
    so the About page fits without scrolling */
 @media (min-width: 860px) {
-  .modal-section .facts { margin-top: -9rem; }
+  .modal-section .facts { margin-top: -7rem; }
 }
 
 @media (max-width: 639px) {

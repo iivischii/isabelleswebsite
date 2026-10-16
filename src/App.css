@@ -1322,9 +1322,9 @@ button { font: inherit; }
   font-synthesis: none;
   background: transparent center / 100% 100% no-repeat;
 }
-.modal-section .facts .fact:nth-child(1) { background-image: url('./assets/1.png'); }
+.modal-section .facts .fact:nth-child(1) { background-image: url('./assets/4.png'); }
 .modal-section .facts .fact:nth-child(2) { background-image: url('./assets/3.png'); }
-.modal-section .facts .fact:nth-child(3) { background-image: url('./assets/4.png'); }
+.modal-section .facts .fact:nth-child(3) { background-image: url('./assets/1.png'); }
 .modal-section .facts .fact:nth-child(4) { background-image: url('./assets/5.png'); }
 .modal-section .facts .fact:hover { box-shadow: none; }
 

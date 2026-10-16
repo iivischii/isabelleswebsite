@@ -72,7 +72,7 @@ const projects = [
   {
     title: 'Belligoal',
     description:
-      'Belligoal is a personal football tracking website built around my interest in Real Madrid and Jude Bellingham. Developed using JSX and CSS, the site brings together the player and team information I personally want to follow in one place. I integrated the ESPN API to access football updates and news, and deployed the project on Render. To help keep the site available and its information refreshed, I configured UptimeRobot for uptime monitoring and periodic requests, alongside the project\'s Gradle-based setup. As one of my most challenging solo projects, BelliGo gave me the opportunity to take full ownership of an idea, work with external APIs, and navigate deployment and maintenance independently. What started as a personal passion project became an opportunity to push my skills beyond what I was already comfortable with.',
+      'Belligoal is a personal football tracking website built around my interest in Real Madrid and Jude Bellingham. Developed using JSX and CSS, the site brings together the player and team information I personally want to follow in one place. I integrated the ESPN API to access football updates and news, and deployed the project on Render. To help keep the site available and its information refreshed, I configured UptimeRobot for uptime monitoring and periodic requests, alongside the project\'s Gradle-based setup. As one of my most challenging solo projects, Belligoal gave me the opportunity to take full ownership of an idea, work with external APIs, and navigate deployment and maintenance independently. What started as a personal passion project became an opportunity to push my skills beyond what I was already comfortable with.',
     tags: ['React.js', 'API integration', 'Personal project'],
     link: 'https://belligoal.onrender.com',
   },
@@ -89,6 +89,12 @@ const certifications = [
   { title: 'TOEIC', detail: 'Test of English for International Communication', date: 'February 10, 2023' },
   { title: 'HTML and CSS', detail: 'Certiport', date: 'June 30, 2026' },
   { title: 'Databases', detail: 'Certiport', date: 'July 11, 2025' },
+]
+
+const workshopsNorgs = [
+  { title: 'Tech4All: UI/UX Design Workshop', detail: 'Attending a seminar put up by the Junior Philippine Computer Society (JPCS)', date: 'January 31, 2026' },
+  { title: 'Tech4All Day 3: Full Stack Web Development and Database Integration.', detail: 'Attending a seminar put up by the Junior Philippine Computer Society (JPCS)', date: 'February 12, 2025' },
+  { title: 'Junior Philippine Computer Society (JPCS)', detail: 'Member of the organization\'s Dasmarians Chapter', date: 'July 11, 2025' },
 ]
 
 const navLinks = [
@@ -278,6 +284,7 @@ function Projects() {
         ))}
       </div>
 
+      
       <h3 className="subhead">Certifications</h3>
       <div className="cert-list">
         {certifications.map((cert) => (
@@ -288,8 +295,19 @@ function Projects() {
           </div>
         ))}
       </div>
+
+      <h3 className="subhead">Workshops & Organizations</h3>
+      <div className="cert-list">
+        {workshopsNorgs.map((item) => (
+          <div key={item.title} className="cert-row">
+            <strong>{item.title}</strong>
+            <span>{item.detail}</span>
+            <time>{item.date}</time>
+          </div>
+        ))}
+      </div>
     </Section>
-  )
+  );
 }
 
 function Interests() {

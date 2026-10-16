@@ -37,23 +37,44 @@ const skills = [
   { group: 'Strengths', items: ['Quality Assurance', 'Project Management', 'Technical Documentation', 'Academic Writing', 'Team Communication'] },
   { group: 'Tools & Hosting', items: ['Visual Studio', 'GitHub','Claude', 'Copilot','ChatGPT', 'Vercel', 'Render'] },
   { group: 'UI/UX & Design', items: ['UI/UX Design', 'Figma', 'Canva'] },
-  { group: 'Video', items: ['CapCut', 'Video editing'] },
+  { group: 'Video Editing & Digital Art', items: ['CapCut', 'Krita'] },
 ]
 
 const projects = [
   {
-    title: 'SIKLAB',
+    title: 'SIKLAB Website',
     description:
-      'A Philippine history adventure game for young learners. I coordinated the project, contributed selected gameplay features, and built the project website and admin dashboard.',
-    tags: ['Unity', 'C#', 'React.js', 'Supabase'],
+      'SIKLAB is a Philippine history adventure game designed to make learning more engaging for young learners. As Project Manager, I coordinated the team and development process, contributed selected gameplay features, and developed the project\'s main website and admin dashboard using React, with Supabase connecting the website\'s backend directly to the administrative system. I designed the website UI with inspiration from old-school arcade games, contributing to selected artwork with the help of AI tools. One of my proudest ideas is the Review Art Wall, a feature inspired by my childhood memories of drawing on MS Paint. Since our target audience is younger learners, I wanted to give them a more creative and familiar way to express their thoughts about the game through drawings rather than relying solely on written feedback. For me, SIKLAB is not just about developing a game, but about creating an experience that makes learning history feel more interactive, personal, and fun.',
+    tags: ['React.js', 'Supabase'],
     link: 'https://larongsiklab.com/',
+  },
+    {
+    title: 'SIKLAB Admin',
+    description:
+      'The admin dashboard was built using JSX and CSS, with Supabase connecting it directly to the main website through a unified backend. I developed its functionality to support our research and data collection, including mathematical logic for tracking group expenses and monitoring in-game and website activity. The dashboard serves as an internal tool for organizing project-related data and supporting the analysis required for our capstone paper.',
+    tags: ['React.js', 'Supabase'],
+    link: 'https://siklab-admin.vercel.app/',
+  },
+    {
+    title: 'SIKLAB Youtube Channel',
+    description:
+      'The videos featured on the channel were edited using the free version of CapCut, with a focus on creating kid-friendly, accessible, and easy-to-understand content. I aimed to make the videos engaging and approachable for our primary audience of younger learners, using a straightforward editing style that supports their understanding while keeping the experience fun and enjoyable.',
+    tags: ['CapCut', 'Youtube Creator Studio'],
+    link: 'https://www.youtube.com/@PoweredByCoffee-CMNW',
   },
   {
     title: 'Augmented Realties',
     description:
-      'A website for Napoles & Co., my team\'s entrepreneurship class project built around an AI and augmented reality blueprint app.',
+      'Augmented Realties is an academic project that started as my own idea, inspired by growing up around a realtor and being familiar with the experience of house trippings. Built with React, the website explores the intersection of real estate, augmented reality, and digital technology, bringing together different ideas into one concept. I served as the Strategy Lead and Operations Lead, coordinating the team and helping shape the project\'s direction, while also contributing to its web development. Design-wise, I deliberately took a more professional approach, stepping outside my usual girly personal aesthetic and SIKLAB\'s quirky style to better suit the project\'s identity. While this was a school project, it\'s an idea I genuinely love and would love to explore further because of its unique potential and the possibilities that come from combining different fields.',
     tags: ['Augmented Reality', 'AI', 'Team project'],
     link: 'https://augmentedrealties.vercel.app/',
+  },
+  {
+    title: 'Belligoal',
+    description:
+      'Belligoal is a personal football tracking website built around my interest in Real Madrid and Jude Bellingham. Developed using JSX and CSS, the site brings together the player and team information I personally want to follow in one place. I integrated the ESPN API to access football updates and news, and deployed the project on Render. To help keep the site available and its information refreshed, I configured UptimeRobot for uptime monitoring and periodic requests, alongside the project\'s Gradle-based setup. As one of my most challenging solo projects, BelliGo gave me the opportunity to take full ownership of an idea, work with external APIs, and navigate deployment and maintenance independently. What started as a personal passion project became an opportunity to push my skills beyond what I was already comfortable with.',
+    tags: ['React.js', 'API integration', 'Personal project'],
+    link: 'https://belligoal.onrender.com',
   },
   {
     title: 'Personal Website',
@@ -155,7 +176,7 @@ function Hero({ onSelect }) {
       <div className="container hero-grid">
         <div className="hero-copy">
           <h1 className="hero-title"><span>Cyrene Isabelle</span><em>Wenceslao</em></h1>
-          <p className="hero-role">UI/UX Designer · Web Developer · Project Lead</p>
+          <p className="hero-role">UI/UX Designer · Web Developer · Project Managment</p>
           <p className="hero-text">
             UI/UX design is my specialty. I create thoughtful mobile and web experiences, and contribute across design, development, and project collaboration.
           </p>
@@ -243,7 +264,7 @@ function Hardware() {
 
 function Projects() {
   return (
-    <Section id="projects" title="More projects" intro="Things I’ve built along the way.">
+    <Section id="projects" title="Projects" intro="Things I’ve built along the way.">
       <div className="project-list">
         {projects.map((project) => (
           <article key={project.title} className="project-row">
@@ -277,23 +298,23 @@ function Interests() {
       <div className="interest-list">
         <article className="interest-row">
           <h3>Film & Television</h3>
-          <p>Enjoy exploring films and television series across different genres.</p>
+          <p>Frequent film enjoyer, often taking inspiration from these types of storytelling for my own personal art and if you're curious my favourite movie is Mean Girls and favourite show is Game of thrones.</p>
         </article>
         <article className="interest-row">
           <h3>Culinary Arts</h3>
-          <p>Passionate about cooking and exploring different dishes and flavors.</p>
+          <p>I take cooking seriously, I take pleasure and pride on feeding people good food, similar to that is my baking, but thats more of a peacful endevour. </p>
         </article>
         <article className="interest-row">
           <h3>Sports</h3>
-          <p>An avid football and basketball fan, supporting Real Madrid and Gilas Pilipinas.</p>
+          <p>An on and off sports fan, I will always be a loyal supporter of Gilas, but other than that, for a while I had been intrested in american football but that fleeted almost instantly, now i've found love with the other type of football a.k.a soccer, i'am now a loyal Real Madrid fan.</p>
         </article>
         <article className="interest-row">
           <h3>Comic Books</h3>
-          <p>Enjoy reading comic books and exploring stories through illustrated narratives.</p>
+          <p>My dream in the future is to have my own comic book collection, similar to how others collect novels, I hope to someday have a vast collections of my favourite stories, and shoes.</p>
         </article>
         <article className="interest-row">
           <h3>Music</h3>
-          <p>An enthusiastic music listener with an appreciation for diverse genres and artists.</p>
+          <p>Music is a big part of my life, it's so integral to the point that I don't really think I can function without it, I truly believe it helps me with my work.</p>
         </article>
       </div>
     </Section>

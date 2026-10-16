@@ -143,7 +143,7 @@ function Header({ onHome }) {
         <button type="button" className="brand" onClick={onHome} aria-label="Back to cover">
           <span className="brand-name">PORTFOLIO <small>2026</small></span>
         </button>
-        <p className="header-label">DIGITAL PORTFOLIO · 2026</p>
+        <p className="header-label">9 · 14 · 2004</p>
       </div>
     </header>
   )

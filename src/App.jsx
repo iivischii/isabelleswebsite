@@ -44,7 +44,7 @@ const projects = [
   {
     title: 'Personal Website',
     description:
-      'A fully responsive, interactive digital portfolio to get to know me professionally and personally,with a consistent grid layout.',
+      'A fully responsive, interactive digital portfolio to get to know me professionally and personally, with a consistent grid layout.',
     tags: ['React.js', 'CSS Grid'],
     link: '', 
   },
@@ -79,7 +79,7 @@ const projects = [
   {
     title: 'Augmented Realties',
     description:
-      'Augmented Realties is an academic project that started as my own idea, inspired by growing up around a realtor and being familiar with the experience of house trippings. Built with React, the website explores the intersection of real estate, augmented reality, and digital technology, bringing together different ideas into one concept. I served as the Strategy Lead and Operations Lead, coordinating the team and helping shape the project\'s direction, while also contributing to its web development. Design-wise, I deliberately took a more professional approach, stepping outside my usual girly personal aesthetic and SIKLAB\'s quirky style to better suit the project\'s identity. While this was a school project, it\'s an idea I genuinely love and would love to explore further because of its unique potential and the possibilities that come from combining different fields.',
+      'Augmented Realties is an academic project that started as my idea, inspired by growing up around a realtor and being familiar with the experience of house trippings. Built with React, the website explores the intersection of real estate, augmented reality, and digital technology, bringing together different ideas into one concept. I served as the Strategy Lead and Operations Lead, coordinating the team and helping shape the project\'s direction, while creating the main website with React.js that was then later on translated by one of my project members into React Native for the mobile prototype. Design-wise, I deliberately took a more professional approach, stepping outside my usual girly personal aesthetic and SIKLAB\'s quirky style to better suit the project\'s identity. While this was a school project, it\'s an idea I genuinely love and would love to explore further because of its unique potential and the possibilities that come from combining different fields.',
     tags: ['Augmented Reality', 'AI', 'Team project'],
     link: 'https://augmentedrealties.vercel.app/',
   },
@@ -102,7 +102,7 @@ const certifications = [
 const workshopsNorgs = [
   { title: 'Tech4All: UI/UX Design Workshop', detail: 'Attending a seminar put up by the Junior Philippine Computer Society (JPCS)', date: 'January 31, 2026' },
   { title: 'Tech4All Day 3: Full Stack Web Development and Database Integration.', detail: 'Attending a seminar put up by the Junior Philippine Computer Society (JPCS)', date: 'February 12, 2025' },
-  { title: 'Junior Philippine Computer Society (JPCS)', detail: 'Member of the organization\'s Dasmarians Chapter', date: 'July 11, 2025' },
+  { title: 'Junior Philippine Computer Society (JPCS)', detail: 'Member of the organization\'s Dasmarians Chapter', date: '2025 - 2026' },
 ]
 
 const navLinks = [

@@ -109,11 +109,11 @@ const workshopsNorgs = [
 
 const navLinks = [
   { id: 'about',          label: 'About' },
-  { id: 'interests',      label: 'Interests' },
   { id: 'skills',         label: 'Skills' },
   { id: 'hardware',       label: 'Hardware' },
   { id: 'projects',       label: 'Projects' },
   { id: 'certifications', label: 'Certifications' },
+  { id: 'interests',      label: 'Interests' },
   { id: 'contact',        label: 'Contact' },
 ]
 
@@ -375,15 +375,29 @@ export default function App() {
           {/* ── HEADER ── */}
           <header className="header">
             <div className="header-inner">
+              {/* left label */}
               <button type="button" className="brand" onClick={() => scrollTo('hero')} aria-label="Back to top">
                 <span className="brand-name">DIGITAL PORTFOLIO <small>2026</small></span>
               </button>
 
-              {/* centre flower */}
-              <div className="header-center-flower" aria-hidden="true">
-                <img src={flower6} alt="" />
-              </div>
+              {/* 8 flowers — each links to a section */}
+              <nav className="flower-nav" aria-label="Section navigation">
+                {navLinks.map((link, i) => (
+                  <button
+                    key={link.id}
+                    type="button"
+                    className="flower-nav-btn"
+                    onClick={() => scrollTo(link.id)}
+                    aria-label={`Go to ${link.label}`}
+                    title={link.label}
+                  >
+                    <img src={flowers[i]} alt={link.label} />
+                    <span className="flower-nav-label">{link.label}</span>
+                  </button>
+                ))}
+              </nav>
 
+              {/* right label */}
               <p className="header-label">9 · 14 · 2004</p>
             </div>
           </header>
@@ -445,11 +459,11 @@ export default function App() {
 
             {/* remaining snap-card sections */}
             <About />
-            <Interests />
             <Skills />
             <Hardware />
             <Projects />
             <Certifications />
+            <Interests />
             <Contact />
           </main>
         </div>

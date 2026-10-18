@@ -13,6 +13,13 @@ import flower6 from './assets/flower 6.png'
 import flower7 from './assets/flower 7.png'
 import flower8 from './assets/flower 8.png'
 
+/* frame imports */
+import frame1 from './assets/1.png'
+import frame2 from './assets/2.png'
+import frame3 from './assets/3.png'
+import frame4 from './assets/4.png'
+import frame5 from './assets/5.png'
+
 const flowers = [flower1, flower2, flower3, flower4, flower5, flower6, flower7, flower8]
 
 const currentYear = new Date().getFullYear()
@@ -33,10 +40,12 @@ const profile = {
 }
 
 const facts = [
-  { label: 'Degree', value: 'BS Information Technology' },
-  { label: 'School', value: 'NU Dasmariñas' },
-  { label: 'Years', value: '2023 – 2027' },
+  { label: 'Degree',    value: 'BS Information Technology' },
+  { label: 'School',    value: 'NU Dasmariñas' },
+  { label: 'Years',     value: '2023 – 2027' },
   { label: 'Languages', value: 'English & Filipino' },
+  { label: 'Specialty', value: 'UI/UX Design' },
+  { label: 'Status',    value: 'Seeking OJT' },
 ]
 
 const skills = [
@@ -168,7 +177,7 @@ const SkillIcon = ({ name, label }) => {
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const canHover = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches
 
-function TiltCard({ children, className = '', index = 0 }) {
+function TiltCard({ children, className = '', index = 0, style = {} }) {
   const ref = useRef(null)
   const handleMove = (e) => {
     if (!canHover() || prefersReducedMotion()) return
@@ -186,7 +195,8 @@ function TiltCard({ children, className = '', index = 0 }) {
     ref.current.style.setProperty('--ry', '0deg')
   }
   return (
-    <div ref={ref} className={`card tilt ${className}`} style={{ '--i': index }}
+    <div ref={ref} className={`card tilt ${className}`}
+      style={{ '--i': index, ...style }}
       onMouseMove={handleMove} onMouseLeave={handleLeave}>
       {children}
     </div>
@@ -208,18 +218,32 @@ function Section({ id, title, intro, children }) {
 /* =========================================================
    SECTIONS
    ========================================================= */
+/* frame → fact mapping:
+   frame1 (pink baroque tall)    → Years
+   frame2 (oval white/gold)      → Degree
+   frame3 (lavender baroque)     → Languages
+   frame4 (rose gold wide)       → School
+   frame5 (cream/gold square)    → Specialty
+   We'll add a 6th pill card for Status (OJT) since we only have 5 frames */
+const frameImages = [frame4, frame1, frame3, frame5, frame2]
+
 function About() {
   return (
     <Section id="about" title="About me">
       <div className="about-grid">
         <p className="about-text">{profile.summary}</p>
         <div className="facts">
-          {facts.map((fact, i) => (
-            <TiltCard key={fact.label} index={i + 1} className="fact">
+          {facts.slice(0, 5).map((fact, i) => (
+            <TiltCard key={fact.label} index={i + 1} className="fact" style={{ '--frame': `url(${frameImages[i]})` }}>
               <span className="fact-label">{fact.label}</span>
               <span className="fact-value">{fact.value}</span>
             </TiltCard>
           ))}
+          {/* 6th card: OJT status — plain styled pill since no 6th frame */}
+          <TiltCard key="status" index={6} className="fact fact-pill">
+            <span className="fact-label">{facts[5].label}</span>
+            <span className="fact-value">{facts[5].value}</span>
+          </TiltCard>
         </div>
       </div>
     </Section>
@@ -412,18 +436,40 @@ function Contact() {
    ========================================================= */
 export default function App() {
   const [hasEntered, setHasEntered] = useState(false)
+  const shellRef = useRef(null)
 
   useEffect(() => {
     const favicon = document.querySelector('link[rel="icon"]')
     if (favicon) favicon.href = stamp
   }, [])
 
+  /* parallax: as user scrolls, the split position drifts slightly */
+  useEffect(() => {
+    if (!hasEntered) return
+    const container = document.querySelector('.scroll-container')
+    if (!container) return
+    const shell = shellRef.current
+    if (!shell) return
+
+    const onScroll = () => {
+      if (prefersReducedMotion()) return
+      const totalScroll = container.scrollHeight - container.clientHeight
+      const progress = totalScroll > 0 ? container.scrollTop / totalScroll : 0
+      // split drifts from 60% → 52% as you scroll to the bottom
+      const splitPct = 60 - (progress * 8)
+      shell.style.background = `linear-gradient(90deg, #f0dfe1 0% ${splitPct}%, #fbf7ee ${splitPct}% 100%)`
+    }
+
+    container.addEventListener('scroll', onScroll, { passive: true })
+    return () => container.removeEventListener('scroll', onScroll)
+  }, [hasEntered])
+
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 
   return (
     <>
       {hasEntered && (
-        <div className="portfolio-shell">
+        <div className="portfolio-shell" ref={shellRef}>
           {/* ── HEADER ── */}
           <header className="header">
             <div className="header-inner">
@@ -432,7 +478,7 @@ export default function App() {
                 <span className="brand-name">DIGITAL PORTFOLIO <small>2026</small></span>
               </button>
 
-              {/* 8 flowers — each links to a section */}
+              {/* 8 flowers — each links to a section, no labels */}
               <nav className="flower-nav" aria-label="Section navigation">
                 {navLinks.map((link, i) => (
                   <button
@@ -443,8 +489,7 @@ export default function App() {
                     aria-label={`Go to ${link.label}`}
                     title={link.label}
                   >
-                    <img src={flowers[i]} alt={link.label} />
-                    <span className="flower-nav-label">{link.label}</span>
+                    <img src={flowers[i]} alt="" aria-hidden="true" />
                   </button>
                 ))}
               </nav>

@@ -134,14 +134,14 @@ const logos = {
 
 /* Order here = order of the pages AND of the flowers at the top. */
 const sections = [
-  { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About', bloom: bloom1 },
-  { id: 'skills', label: 'Skills', bloom: bloom2 },
-  { id: 'hardware', label: 'Hardware', bloom: bloom3 },
-  { id: 'projects', label: 'Projects', bloom: bloom4 },
-  { id: 'certifications', label: 'Certifications', bloom: bloom5 },
-  { id: 'interests', label: 'Interests', bloom: bloom6 },
-  { id: 'contact', label: 'Contact', bloom: bloom7 },
+  { id: 'home', label: 'Home', bloom: bloom8, split: 0.64, tone: 1 },
+  { id: 'about', label: 'About', bloom: bloom1, tone: 0, anchor: 'about' },
+  { id: 'skills', label: 'Skills', bloom: bloom2, split: 0.62, tone: 1 },
+  { id: 'hardware', label: 'Hardware', bloom: bloom3, split: 0, tone: 0 },
+  { id: 'projects', label: 'Projects', bloom: bloom4, tone: 1, anchor: 'projects' },
+  { id: 'certifications', label: 'Certifications', bloom: bloom5, split: 0.4, tone: 0 },
+  { id: 'interests', label: 'Interests', bloom: bloom6, split: 0.62, tone: 1 },
+  { id: 'contact', label: 'Contact', bloom: bloom7, split: 0.38, tone: 0 },
 ]
 const at = (id) => sections.findIndex((s) => s.id === id)
 
@@ -179,7 +179,6 @@ function Card({ id, title, intro, children }) {
 function Projects() {
   const [i, setI] = useState(0)
   const touchX = useRef(null)
-  const p = projects[i]
   const show = (n) => setI((n + projects.length) % projects.length)
 
   return (
@@ -199,16 +198,20 @@ function Projects() {
         touchX.current = null
       }}
     >
-      <article className="proj" key={p.title} aria-live="polite">
-        <div className="proj-meta">
-          <p className="tags">{p.tags.join(' · ')}</p>
-          <h3>{p.title}</h3>
-          {p.link && (
-            <a className="btn solid" href={p.link} target="_blank" rel="noreferrer">View project ↗</a>
-          )}
-        </div>
-        <p className="proj-text">{p.description}</p>
-      </article>
+      <div className="proj-stack" aria-live="polite">
+        {projects.map((p, n) => (
+          <article className={`proj${n === i ? ' on' : ''}`} key={p.title} aria-hidden={n !== i}>
+            <div className="proj-meta">
+              <p className="tags">{p.tags.join(' · ')}</p>
+              <h3>{p.title}</h3>
+              {p.link && (
+                <a className="btn solid" href={p.link} target="_blank" rel="noreferrer" tabIndex={n === i ? 0 : -1}>View project ↗</a>
+              )}
+            </div>
+            <p className="proj-text">{p.description}</p>
+          </article>
+        ))}
+      </div>
       <div className="carousel-bar">
         <button type="button" className="arrow" onClick={() => show(i - 1)} aria-label="Previous project">←</button>
         <div className="dots" role="group" aria-label="Choose a project">
@@ -250,40 +253,74 @@ export default function App() {
     if (hasEntered) scroller.current?.focus({ preventScroll: true })
   }, [hasEntered])
 
-  /* scroll drives the colours: the pink/white divider slides, the pink shifts warmer */
+  /* where the pink should end on pages whose text it must not cut through */
+  const anchors = useRef({})
+  const measure = useCallback(() => {
+    const box = (sel) => document.querySelector(sel)?.getBoundingClientRect()
+    const gutter = (left, right) => (left && right ? (left.right + right.left) / 2 : null)
+    anchors.current = {
+      about: gutter(box('#about .about-text'), box('#about .facts')),
+      projects: gutter(box('#projects .proj-meta'), box('#projects .proj-text')),
+    }
+  }, [])
+
+  /* scroll drives the colours: the pink edge slides between pages, the pink warms up.
+     On phones every page is a single colour instead (see .pinkpanel in the CSS). */
   useEffect(() => {
     const el = scroller.current
     const root = shell.current
     let raf = 0
+
+    const target = (n, w, h) => {
+      const sec = sections[n]
+      if (sec.anchor) return { x: anchors.current[sec.anchor] ?? w * 0.5, dx: 0 }
+      const x = (sec.split ?? 0.5) * w
+      return { x, dx: x === 0 ? 0 : h * 0.07 }
+    }
+
     const update = () => {
       raf = 0
+      const w = root.clientWidth
+      const h = root.clientHeight
       const s = el.scrollTop / (el.clientHeight || 1)
-      root.style.setProperty('--split', `${(52 + 12 * Math.cos(s * Math.PI)).toFixed(2)}%`)
+      const n = Math.max(0, Math.min(Math.floor(s), sections.length - 2))
+      const t = Math.min(1, Math.max(0, s - n))
+      const e = t * t * (3 - 2 * t)
+      const a = target(n, w, h)
+      const b = target(n + 1, w, h)
+      root.style.setProperty('--x', `${(a.x + (b.x - a.x) * e).toFixed(1)}px`)
+      root.style.setProperty('--dx', `${(a.dx + (b.dx - a.dx) * e).toFixed(1)}px`)
+      root.style.setProperty('--tone', (sections[n].tone + (sections[n + 1].tone - sections[n].tone) * e).toFixed(3))
       root.style.setProperty('--warm', (0.5 + 0.5 * Math.sin(s * Math.PI * 0.6)).toFixed(3))
       setActive(Math.round(s))
     }
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update) }
+    const onResize = () => { measure(); onScroll() }
+
     el.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
+    window.addEventListener('resize', onResize)
+    measure()
     update()
+    document.fonts?.ready.then(onResize)
 
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.target.classList.toggle('is-in', e.isIntersecting)),
+      (entries) => entries.forEach((en) => en.target.classList.toggle('is-in', en.isIntersecting)),
       { root: el, threshold: 0.45 },
     )
     el.querySelectorAll('.card').forEach((c) => io.observe(c))
 
     return () => {
       el.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
+      window.removeEventListener('resize', onResize)
       io.disconnect()
       if (raf) cancelAnimationFrame(raf)
     }
-  }, [])
+  }, [measure])
 
   /* the mouse moves a soft pink glow around the page */
   const onPointerMove = (e) => {
     if (e.pointerType !== 'mouse') return
+    shell.current.classList.add('has-mouse')
     shell.current.style.setProperty('--mx', `${(e.clientX / window.innerWidth) * 100}%`)
     shell.current.style.setProperty('--my', `${(e.clientY / window.innerHeight) * 100}%`)
   }
@@ -291,7 +328,7 @@ export default function App() {
   return (
     <>
       <div ref={shell} className={`portfolio-shell ${hasEntered ? 'is-revealed' : 'is-covered'}`} onPointerMove={onPointerMove}>
-        <div className="backdrop" aria-hidden="true" />
+        <div className="backdrop" aria-hidden="true"><div className="pinkpanel" /></div>
         <div className="frame" aria-hidden="true" />
 
         {/* top bar: the flowers are the index. Tap one to jump there. */}
@@ -300,14 +337,14 @@ export default function App() {
             DIGITAL PORTFOLIO <small>{currentYear}</small>
           </button>
           <nav className="flowers" aria-label="Portfolio pages">
-            {sections.slice(1).map((s, k) => (
+            {sections.map((s, k) => (
               <button
                 key={s.id}
                 type="button"
-                className={`fl${active === k + 1 ? ' on' : ''}`}
-                onClick={() => go(k + 1)}
+                className={`fl${active === k ? ' on' : ''}`}
+                onClick={() => go(k)}
                 aria-label={`Go to ${s.label}`}
-                aria-current={active === k + 1 ? 'true' : undefined}
+                aria-current={active === k ? 'true' : undefined}
               >
                 <img src={s.bloom} alt="" />
                 <span>{s.label}</span>
@@ -329,11 +366,9 @@ export default function App() {
                 <p className="lede">
                   UI/UX design is my specialty. I create thoughtful mobile and web experiences, and contribute across design, development, and project collaboration.
                 </p>
-                <div className="cta">
-                  <button type="button" className="btn solid" onClick={() => go(at('projects'))}>View projects</button>
-                  <button type="button" className="btn" onClick={() => go(at('contact'))}>Say hello</button>
-                  {profile.resume && <a className="btn" href={profile.resume} target="_blank" rel="noreferrer">Résumé</a>}
-                </div>
+                {profile.resume && (
+                  <div className="cta"><a className="btn" href={profile.resume} target="_blank" rel="noreferrer">Résumé</a></div>
+                )}
               </div>
               <aside className="index rise d2">
                 <div className="index-head">

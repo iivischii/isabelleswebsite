@@ -42,7 +42,7 @@ const facts = [
 const projects = [
   {
     "title": "SIKLAB",
-    "description": "A Philippine history adventure game for young learners. As Project Manager, I coordinated development, independently authored the research paper with adviser guidance, and contributed selected Unity gameplay features. I developed the React website and admin dashboard with a shared Supabase backend, including the Review Art Wall for drawing-based feedback. I also worked on character artwork with AI-assisted tools and edited educational videos using CapCut.",
+    "description": "SIKLAB is a Philippine history adventure game designed to make learning more engaging for young learners. As Project Manager, I coordinated the team, independently authored the research paper with adviser guidance, and developed the game's introduction and selected mini-games using Unity and C#. I also created the storyboard and designed the characters with AI-assisted tools and Krita. For the main website, I used React and Supabase with an old-school arcade-inspired UI. One of my proudest ideas is the Review Art Wall: inspired by childhood afternoons on MS Paint, it gives young players a creative way to share feedback through drawings. I also edited kid-friendly educational videos in CapCut. For me, SIKLAB is about making history feel interactive, personal, and fun.",
     "tags": [
       "React.js",
       "Supabase",
@@ -51,17 +51,17 @@ const projects = [
       "CapCut"
     ],
     "link": "https://larongsiklab.com/",
-    "preview": "SIKLAB-PREV.png",
-    "links": [
-      {
-        "label": "Admin dashboard",
-        "href": "https://siklab-admin.vercel.app/"
-      },
-      {
-        "label": "YouTube channel",
-        "href": "https://www.youtube.com/@PoweredByCoffee-CMNW"
-      }
-    ]
+    "preview": "GAME-PREV.png"
+  },
+  {
+    "title": "SIKLAB Admin",
+    "description": "The admin dashboard was built using JSX and CSS, with Supabase connecting it directly to the main website through a unified backend. I developed its functionality to support our research and data collection, including mathematical logic for tracking group expenses and monitoring in-game and website activity. The dashboard serves as an internal tool for organizing project-related data and supporting the analysis required for our capstone paper.",
+    "tags": [
+      "React.js",
+      "Supabase"
+    ],
+    "link": "https://siklab-admin.vercel.app/",
+    "preview": "ADMIN-PREV.png"
   },
   {
     "title": "Augmented Realties",
@@ -87,7 +87,7 @@ const projects = [
   },
   {
     "title": "Sweet Spin Records",
-    "description": "A personal learning project and my first hands-on experience with Supabase. I created Sweet Spin Records to practice connecting a website to a backend and become more comfortable working with a database.",
+    "description": "Sweet Spin Records was my first experience learning Supabase, built for a class project involving sign-up, login, profiles, and editing user information. Our professor gave us the freedom to choose the theme, so of course I chose music. Music has always been a sentimental part of my life, and I wanted to bring a little of that feeling into something I was learning to build. The project helped me connect authentication, profile management, and a database in one place, while making the learning process feel a little more like me.",
     "tags": [
       "Supabase",
       "Personal project"
@@ -97,9 +97,11 @@ const projects = [
   },
   {
     "title": "Dugout",
-    "description": "A website project from my growing collection of web development work.",
+    "description": "Dugout is my first project working with a dataset, inspired by my love of football and the idea of managing a team of my own. It is a lightweight fantasy football experience with no money involved, made for people who enjoy choosing players and imagining their ideal squad without the financial commitment or complexity of bigger football management games. Think of it as my little entry into the manager's dugout: a way to learn how to work with player data while building something I would enjoy using myself.",
     "tags": [
-      "Web development"
+      "Dataset integration",
+      "Fantasy football",
+      "Personal project"
     ],
     "preview": "DUGOUT-PREV.png",
     "link": "https://dugout-emzdjae9g-iivischiis-projects.vercel.app"
@@ -231,23 +233,17 @@ function Projects() {
               {p.link ? (
                 <a className="proj-preview" href={p.link} target="_blank" rel="noreferrer" tabIndex={n === i ? 0 : -1} aria-label={`Visit ${p.title} (opens in a new tab)`}>
                   <img src={previewImages[`./assets/${p.preview}`]} alt={`${p.title} website preview`} loading="lazy" decoding="async" />
-                  <span className="proj-preview-label">View live site ?</span>
+                  <span className="proj-preview-label">View live site <span aria-hidden="true">&#8599;</span></span>
                 </a>
               ) : (
                 <div className="proj-preview">
                   <img src={previewImages[`./assets/${p.preview}`]} alt={`${p.title} website preview`} loading="lazy" decoding="async" />
-                  <span className="proj-preview-label">You're here ?</span>
+                  <span className="proj-preview-label">You're here <span aria-hidden="true">&#9825;</span></span>
                 </div>
               )}
               <p className="tags">{p.tags.join(' · ')}</p>
               <h3>{p.title}</h3>
-              {p.links?.length > 0 && (
-                <div className="proj-links">
-                  {p.links.map((link) => (
-                    <a key={link.href} className="btn" href={link.href} target="_blank" rel="noreferrer" tabIndex={n === i ? 0 : -1}>{link.label} ?</a>
-                  ))}
-                </div>
-              )}
+
             </div>
             <p className="proj-text">{p.description}</p>
           </article>

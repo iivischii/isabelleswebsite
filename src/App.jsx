@@ -162,10 +162,10 @@ const logos = {
 
 /* Order here = order of the pages AND of the flowers at the top. */
 const sections = [
-  { id: 'home', label: 'Home', bloom: bloom8, split: 0.64, tone: 1 },
+  { id: 'home', label: 'Home', bloom: bloom8, anchor: 'home', tone: 1 },
   { id: 'about', label: 'About', bloom: bloom1, tone: 0, anchor: 'about' },
   { id: 'skills', label: 'Skills', bloom: bloom2, split: 0.62, tone: 1 },
-  { id: 'hardware', label: 'Hardware', bloom: bloom3, split: 0, tone: 0 },
+  { id: 'hardware', label: 'Hardware', bloom: bloom3, anchor: 'hardware', tone: 1 },
   { id: 'projects', label: 'Projects', bloom: bloom4, tone: 1, anchor: 'projects' },
   { id: 'certifications', label: 'Certifications', bloom: bloom5, split: 0.4, tone: 0 },
   { id: 'interests', label: 'Interests', bloom: bloom6, split: 0.62, tone: 1 },
@@ -296,7 +296,9 @@ export default function App() {
     const box = (sel) => document.querySelector(sel)?.getBoundingClientRect()
     const gutter = (left, right) => (left && right ? (left.right + right.left) / 2 : null)
     anchors.current = {
+      home: gutter(box('#home .idx .n'), box('#home .idx .t')),
       about: gutter(box('#about .about-text'), box('#about .facts')),
+      hardware: gutter(box('#hardware .hw img'), box('#hardware .hw > div')),
       projects: gutter(box('#projects .proj-meta'), box('#projects .proj-text')),
     }
   }, [])
@@ -465,7 +467,7 @@ export default function App() {
           {/* 03 HARDWARE */}
           <Card id="hardware" title="Hardware" intro="My home setup for focused development and remote collaboration.">
             <div className="hw">
-              <img src={compu} alt="Pink line-art drawing of a desktop workstation" />
+              <img src={compu} alt="Cream line-art drawing of a desktop workstation" />
               <div>
                 <article><h3>Hardware</h3><p>Desktop workstation, dedicated monitor, and peripherals.</p></article>
                 <article><h3>Development Environment</h3><p>Windows 11, Visual Studio Code, Git, React, and other development tools.</p></article>

@@ -398,3 +398,16 @@ a { color: inherit; text-decoration: none; }
   .rise, .bloom { opacity: 1; transform: none; transition: none; }
   .cue, .proj.on { animation: none; }
 }
+
+/* Softer flowers and clickable project previews */
+.card.is-in .bloom, .home.is-in .bloom-home { opacity: 0.2; }
+.proj > * { min-width: 0; }
+.proj-preview { position: relative; display: block; width: 100%; margin-bottom: 1rem; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--line); border-radius: 0.9rem; background: rgba(255,250,244,0.85); box-shadow: 0 0.5rem 1.3rem rgba(136,72,90,0.12); }
+.proj-preview img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.35s ease; }
+.proj-preview-label { position: absolute; left: 50%; bottom: 0.75rem; transform: translateX(-50%); padding: 0.5rem 0.85rem; border: 1px solid rgba(136,72,90,0.3); border-radius: 999px; background: rgba(255,250,244,0.94); color: var(--wine); font-size: 0.7rem; font-weight: 600; white-space: nowrap; }
+a.proj-preview:hover img, a.proj-preview:focus-visible img { transform: scale(1.04); }
+a.proj-preview:focus-visible { outline: 2px solid var(--wine); outline-offset: 4px; }
+.proj-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.proj-links .btn { padding: 0.5rem 0.7rem; font-size: 0.7rem; }
+@media (max-width: 700px) { .card.is-in .bloom { opacity: 0.15; } .proj-preview { max-width: 20rem; } }
+@media (prefers-reduced-motion: reduce) { .proj-preview img { transition: none; } a.proj-preview:hover img, a.proj-preview:focus-visible img { transform: none; } }

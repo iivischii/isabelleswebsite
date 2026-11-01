@@ -12,6 +12,8 @@ import bloom8 from './assets/flower 8.png'
 import Landing from './Landing.jsx'
 import { brandIcons, customIcons } from './skillIcons.js'
 
+const previewImages = import.meta.glob('./assets/*-PREV.*', { eager: true, query: '?url', import: 'default' })
+
 const currentYear = new Date().getFullYear()
 
 /* =========================================================
@@ -25,7 +27,7 @@ const profile = {
     'A BSIT student specializing in Mobile and Web Applications at National University–Dasmariñas, with UI/UX design as my specialty. I am seeking an OJT internship to grow in design and web development. Through SIKLAB, I contributed selected gameplay features, the project website, and the admin dashboard.',
   email: 'cyreneisabellewenceslao@gmail.com',
   github: 'https://github.com/iivischii',
-  siklabGithub: 'https://github.com/bycoffeepowered-prog',
+  indeed: 'https://profile.indeed.com/?hl=en_PH&co=PH&from=gnav-homepage--homepage-frontend',
   linkedin: 'https://www.linkedin.com/in/cyrene-isabelle-wenceslao-4b2265444/',
   resume: '',   // 👈 e.g. '/Resume.pdf' (put the file in /public). Your PDF has your phone + home address, so only add it if you're happy for it to be public
 }
@@ -39,55 +41,79 @@ const facts = [
 
 const projects = [
   {
-    title: 'Personal Website',
-    description:
-      'A fully responsive, interactive digital portfolio to get to know me professionally and personally, with a consistent grid layout.',
-    tags: ['React.js', 'CSS Grid'],
-    link: '', 
+    "title": "SIKLAB",
+    "description": "A Philippine history adventure game for young learners. As Project Manager, I coordinated development, independently authored the research paper with adviser guidance, and contributed selected Unity gameplay features. I developed the React website and admin dashboard with a shared Supabase backend, including the Review Art Wall for drawing-based feedback. I also worked on character artwork with AI-assisted tools and edited educational videos using CapCut.",
+    "tags": [
+      "React.js",
+      "Supabase",
+      "Unity",
+      "C#",
+      "CapCut"
+    ],
+    "link": "https://larongsiklab.com/",
+    "preview": "SIKLAB-PREV.png",
+    "links": [
+      {
+        "label": "Admin dashboard",
+        "href": "https://siklab-admin.vercel.app/"
+      },
+      {
+        "label": "YouTube channel",
+        "href": "https://www.youtube.com/@PoweredByCoffee-CMNW"
+      }
+    ]
   },
   {
-    title: 'SIKLAB Website',
-    description:
-      'SIKLAB is a Philippine history adventure game designed to make learning more engaging for young learners. As Project Manager, I coordinated the team and development process, contributed selected gameplay features, and developed the project\'s main website and admin dashboard using React, with Supabase connecting the website\'s backend directly to the administrative system. I designed the website UI with inspiration from old-school arcade games, contributing to selected artwork with the help of AI tools. One of my proudest ideas is the Review Art Wall, a feature inspired by my childhood memories of drawing on MS Paint. Since our target audience is younger learners, I wanted to give them a more creative and familiar way to express their thoughts about the game through drawings rather than relying solely on written feedback. For me, SIKLAB is not just about developing a game, but about creating an experience that makes learning history feel more interactive, personal, and fun.',
-    tags: ['React.js', 'Supabase'],
-    link: 'https://larongsiklab.com/',
-  },
-    {
-    title: 'SIKLAB Admin',
-    description:
-      'The admin dashboard was built using JSX and CSS, with Supabase connecting it directly to the main website through a unified backend. I developed its functionality to support our research and data collection, including mathematical logic for tracking group expenses and monitoring in-game and website activity. The dashboard serves as an internal tool for organizing project-related data and supporting the analysis required for our capstone paper.',
-    tags: ['React.js', 'Supabase'],
-    link: 'https://siklab-admin.vercel.app/',
-  },
-    {
-    title: 'SIKLAB Youtube Channel',
-    description:
-      'The videos featured on the channel were edited using the free version of CapCut, with a focus on creating kid-friendly, accessible, and easy-to-understand content. I aimed to make the videos engaging and approachable for our primary audience of younger learners, using a straightforward editing style that supports their understanding while keeping the experience fun and enjoyable.',
-    tags: ['CapCut', 'Youtube Creator Studio'],
-    link: 'https://www.youtube.com/@PoweredByCoffee-CMNW',
+    "title": "Augmented Realties",
+    "description": "Augmented Realties is an academic project that started as my idea, inspired by growing up around a realtor and being familiar with the experience of house trippings. Built with React, the website explores the intersection of real estate, augmented reality, and digital technology, bringing together different ideas into one concept. I served as the Strategy Lead and Operations Lead, coordinating the team and helping shape the project's direction, while creating the main website with React.js that was then later on translated by one of my project members into React Native for the mobile prototype. Design-wise, I deliberately took a more professional approach, stepping outside my usual girly personal aesthetic and SIKLAB's quirky style to better suit the project's identity. While this was a school project, it's an idea I genuinely love and would love to explore further because of its unique potential and the possibilities that come from combining different fields.",
+    "tags": [
+      "Augmented Reality",
+      "AI",
+      "Team project"
+    ],
+    "link": "https://augmentedrealties.vercel.app/",
+    "preview": "AR-PREV.jpg"
   },
   {
-    title: 'SIKLAB',
-    description:
-      'I independently authored the research paper, with guidance from advisers and professors, and contributed extensively to the development of the game using Unity and C#. My responsibilities included designing every character with the assistance of AI tools, primarily Tripo and Krita, using a drawing tablet to refine the artwork. During the early development stages, I also created a storyboard to establish the game\'s narrative direction. For implementation, I developed the game’s introduction and several mini-games, including a maze, a Tumbang Preso-inspired game in Chapter 2, and a puzzle and Jackstone-inspired game in Chapter 3.',
-    tags: ['Unity', 'Docx', 'Word'],
-    link: '',
+    "title": "Belligoal",
+    "description": "Belligoal is a personal football tracking website built around my interest in Real Madrid and Jude Bellingham. Developed using JSX and CSS, the site brings together the player and team information I personally want to follow in one place. I integrated the ESPN API to access football updates and news, and deployed the project on Render. To help keep the site available and its information refreshed, I configured UptimeRobot for uptime monitoring and periodic requests, alongside the project's Gradle-based setup. As one of my most challenging solo projects, Belligoal gave me the opportunity to take full ownership of an idea, work with external APIs, and navigate deployment and maintenance independently. What started as a personal passion project became an opportunity to push my skills beyond what I was already comfortable with.",
+    "tags": [
+      "React.js",
+      "API integration",
+      "Personal project"
+    ],
+    "link": "https://belligoal.onrender.com",
+    "preview": "BELLIGOAL-PREV.png"
   },
   {
-    title: 'Augmented Realties',
-    description:
-      'Augmented Realties is an academic project that started as my idea, inspired by growing up around a realtor and being familiar with the experience of house trippings. Built with React, the website explores the intersection of real estate, augmented reality, and digital technology, bringing together different ideas into one concept. I served as the Strategy Lead and Operations Lead, coordinating the team and helping shape the project\'s direction, while creating the main website with React.js that was then later on translated by one of my project members into React Native for the mobile prototype. Design-wise, I deliberately took a more professional approach, stepping outside my usual girly personal aesthetic and SIKLAB\'s quirky style to better suit the project\'s identity. While this was a school project, it\'s an idea I genuinely love and would love to explore further because of its unique potential and the possibilities that come from combining different fields.',
-    tags: ['Augmented Reality', 'AI', 'Team project'],
-    link: 'https://augmentedrealties.vercel.app/',
+    "title": "Sweet Spin Records",
+    "description": "A personal learning project and my first hands-on experience with Supabase. I created Sweet Spin Records to practice connecting a website to a backend and become more comfortable working with a database.",
+    "tags": [
+      "Supabase",
+      "Personal project"
+    ],
+    "preview": "SS-PREV.jpg",
+    "link": "https://recordproject.vercel.app"
   },
   {
-    title: 'Belligoal',
-    description:
-      'Belligoal is a personal football tracking website built around my interest in Real Madrid and Jude Bellingham. Developed using JSX and CSS, the site brings together the player and team information I personally want to follow in one place. I integrated the ESPN API to access football updates and news, and deployed the project on Render. To help keep the site available and its information refreshed, I configured UptimeRobot for uptime monitoring and periodic requests, alongside the project\'s Gradle-based setup. As one of my most challenging solo projects, Belligoal gave me the opportunity to take full ownership of an idea, work with external APIs, and navigate deployment and maintenance independently. What started as a personal passion project became an opportunity to push my skills beyond what I was already comfortable with.',
-    tags: ['React.js', 'API integration', 'Personal project'],
-    link: 'https://belligoal.onrender.com',
+    "title": "Dugout",
+    "description": "A website project from my growing collection of web development work.",
+    "tags": [
+      "Web development"
+    ],
+    "preview": "DUGOUT-PREV.png",
+    "link": "https://dugout-emzdjae9g-iivischiis-projects.vercel.app"
   },
-  
+  {
+    "title": "Personal Website",
+    "description": "A fully responsive, interactive digital portfolio to get to know me professionally and personally, with a consistent grid layout.",
+    "tags": [
+      "React.js",
+      "CSS Grid"
+    ],
+    "link": "",
+    "preview": "PW-PREV.png"
+  }
 ]
 
 const certifications = [
@@ -202,10 +228,25 @@ function Projects() {
         {projects.map((p, n) => (
           <article className={`proj${n === i ? ' on' : ''}`} key={p.title} aria-hidden={n !== i}>
             <div className="proj-meta">
+              {p.link ? (
+                <a className="proj-preview" href={p.link} target="_blank" rel="noreferrer" tabIndex={n === i ? 0 : -1} aria-label={`Visit ${p.title} (opens in a new tab)`}>
+                  <img src={previewImages[`./assets/${p.preview}`]} alt={`${p.title} website preview`} loading="lazy" decoding="async" />
+                  <span className="proj-preview-label">View live site ?</span>
+                </a>
+              ) : (
+                <div className="proj-preview">
+                  <img src={previewImages[`./assets/${p.preview}`]} alt={`${p.title} website preview`} loading="lazy" decoding="async" />
+                  <span className="proj-preview-label">You're here ?</span>
+                </div>
+              )}
               <p className="tags">{p.tags.join(' · ')}</p>
               <h3>{p.title}</h3>
-              {p.link && (
-                <a className="btn solid" href={p.link} target="_blank" rel="noreferrer" tabIndex={n === i ? 0 : -1}>View project ↗</a>
+              {p.links?.length > 0 && (
+                <div className="proj-links">
+                  {p.links.map((link) => (
+                    <a key={link.href} className="btn" href={link.href} target="_blank" rel="noreferrer" tabIndex={n === i ? 0 : -1}>{link.label} ?</a>
+                  ))}
+                </div>
               )}
             </div>
             <p className="proj-text">{p.description}</p>
@@ -474,7 +515,7 @@ export default function App() {
               <div className="cta">
                 <a href={`mailto:${profile.email}`} className="btn solid">{profile.email}</a>
                 <a href={profile.github} className="btn" target="_blank" rel="noreferrer">Personal GitHub</a>
-                <a href={profile.siklabGithub} className="btn" target="_blank" rel="noreferrer">SIKLAB GitHub</a>
+                <a href={profile.indeed} className="btn" target="_blank" rel="noreferrer">Indeed</a>
                 {profile.linkedin && <a href={profile.linkedin} className="btn" target="_blank" rel="noreferrer">LinkedIn</a>}
                 {profile.resume && <a href={profile.resume} className="btn" target="_blank" rel="noreferrer">Résumé</a>}
               </div>

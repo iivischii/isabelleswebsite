@@ -22,7 +22,7 @@ export const brandIcons = {
 }
 
 export const customIcons = {
- "csharp": "<path d=\"M12 2.5 20.5 7.25v9.5L12 21.5 3.5 16.75v-9.5z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><text x=\"12\" y=\"15.2\" text-anchor=\"middle\" font-size=\"8.6\" font-weight=\"700\" fill=\"currentColor\" font-family=\"DM Sans, sans-serif\">C#</text>",
+ "cplusplus": "<path d=\"M12 2.5 20.5 7.25v9.5L12 21.5 3.5 16.75v-9.5z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><text x=\"12\" y=\"15.2\" text-anchor=\"middle\" font-size=\"8.6\" font-weight=\"700\" fill=\"currentColor\" font-family=\"DM Sans, sans-serif\">C++</text>",
  "vs": "<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><text x=\"12\" y=\"15.4\" text-anchor=\"middle\" font-size=\"8.4\" font-weight=\"700\" fill=\"currentColor\" font-family=\"DM Sans, sans-serif\">VS</text>",
  "canva": "<circle cx=\"12\" cy=\"12\" r=\"9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><text x=\"12\" y=\"15.4\" text-anchor=\"middle\" font-size=\"8.6\" font-weight=\"700\" fill=\"currentColor\" font-family=\"DM Sans, sans-serif\">Ca</text>",
  "capcut": "<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><text x=\"12\" y=\"15.4\" text-anchor=\"middle\" font-size=\"8.4\" font-weight=\"700\" fill=\"currentColor\" font-family=\"DM Sans, sans-serif\">CC</text>",

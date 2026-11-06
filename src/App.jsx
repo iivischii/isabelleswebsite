@@ -42,12 +42,12 @@ const facts = [
 const projects = [
   {
     "title": "SIKLAB",
-    "description": "SIKLAB is a Philippine history adventure game designed to make learning more engaging for young learners. As Project Manager, I coordinated the team, independently authored the research paper with adviser guidance, and developed the game's introduction and selected mini-games using Unity and C#. I also created the storyboard and designed the characters with AI-assisted tools and Krita. For the main website, I used React and Supabase with an old-school arcade-inspired UI. One of my proudest ideas is the Review Art Wall: inspired by childhood afternoons on MS Paint, it gives young players a creative way to share feedback through drawings. I also edited kid-friendly educational videos in CapCut. For me, SIKLAB is about making history feel interactive, personal, and fun.",
+    "description": "SIKLAB is a Philippine history adventure game designed to make learning more engaging for young learners. As Project Manager, I coordinated the team, independently authored the research paper with adviser guidance, and developed the game's introduction and selected mini-games using Unity and C++. I also created the storyboard and designed the characters with AI-assisted tools and Krita. For the main website, I used React and Supabase with an old-school arcade-inspired UI. One of my proudest ideas is the Review Art Wall: inspired by childhood afternoons on MS Paint, it gives young players a creative way to share feedback through drawings. I also edited kid-friendly educational videos in CapCut. For me, SIKLAB is about making history feel interactive, personal, and fun.",
     "tags": [
       "React.js",
       "Supabase",
       "Unity",
-      "C#",
+      "C++",
       "CapCut"
     ],
     "link": "https://larongsiklab.com/",
@@ -143,7 +143,7 @@ const interests = [
    everything else shows as a pink pill. Add a logo name below to give an item a logo. */
 const skillGroups = [
   { group: 'Web', items: ['HTML', 'CSS', 'JavaScript', 'React.js'] },
-  { group: 'Languages', items: ['JavaScript', 'Dart', 'C#', 'Python (basic)'] },
+  { group: 'Languages', items: ['JavaScript', 'Dart', 'C++', 'Python (basic)'] },
   { group: 'Mobile & Games', items: ['React Native', 'Flutter', 'Unity', 'Blender'] },
   { group: 'Backend & Data', items: ['Supabase', 'Firebase', 'SQL', 'Database management'] },
   { group: 'Tools & Hosting', items: ['Visual Studio', 'GitHub', 'Vercel', 'Render'] },
@@ -153,7 +153,7 @@ const skillGroups = [
 ]
 
 const logos = {
-  HTML: 'html5', CSS: 'css', JavaScript: 'javascript', 'React.js': 'react', Dart: 'dart', 'C#': 'csharp',
+  HTML: 'html5', CSS: 'css', JavaScript: 'javascript', 'React.js': 'react', Dart: 'dart', 'C++': 'cplusplus',
   'Python (basic)': 'python', 'React Native': 'react', Flutter: 'flutter', Unity: 'unity', Blender: 'blender',
   Supabase: 'supabase', Firebase: 'firebase', SQL: 'sql', 'Visual Studio': 'vs', GitHub: 'github',
   Vercel: 'vercel', Render: 'render', Figma: 'figma', Canva: 'canva', Krita: 'krita', CapCut: 'capcut',

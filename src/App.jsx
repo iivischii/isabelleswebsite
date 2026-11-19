@@ -104,7 +104,7 @@ const projects = [
       "Personal project"
     ],
     "preview": "DUGOUT-PREV.png",
-    "link": "https://dugout-emzdjae9g-iivischiis-projects.vercel.app/"
+    "link": "https://dugout-seven-alpha.vercel.app/"
   },
   {
     "title": "Personal Website",

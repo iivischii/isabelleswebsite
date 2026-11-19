@@ -93,7 +93,7 @@ const projects = [
       "Personal project"
     ],
     "preview": "SS-PREV.jpg",
-    "link": "https://recordproject.vercel.app"
+    "link": "https://recordproject.vercel.app/"
   },
   {
     "title": "Dugout",
@@ -104,7 +104,7 @@ const projects = [
       "Personal project"
     ],
     "preview": "DUGOUT-PREV.png",
-    "link": "https://dugout-emzdjae9g-iivischiis-projects.vercel.app"
+    "link": "https://dugout-emzdjae9g-iivischiis-projects.vercel.app/"
   },
   {
     "title": "Personal Website",
